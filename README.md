@@ -33,19 +33,21 @@ El modelo final no es uno solo: son **dos modelos Ridge + Polynomial independien
 
 ## Estructura del proyecto
 
+```
 regresion_casas_california_pipeline/
 ├── notebooks/
-│ ├── 01_EDA.ipynb # Análisis exploratorio
-│ ├── 02_pipeline_entrenamiento.ipynb # Pipeline base con Scikit-Learn (Ronda 1)
-│ └── 03_diagnostico_y_mejora.ipynb # Diagnóstico, hipótesis de mejora y evaluación final (Ronda 2)
+│   ├── 01_EDA.ipynb                      # Análisis exploratorio
+│   ├── 02_pipeline_entrenamiento.ipynb   # Pipeline base con Scikit-Learn (Ronda 1)
+│   └── 03_diagnostico_y_mejora.ipynb     # Diagnóstico, hipótesis de mejora y evaluación final (Ronda 2)
 ├── src/
-│ └── preprocesamiento.py # Funciones de preprocesamiento reutilizables
+│   └── preprocesamiento.py               # Funciones de preprocesamiento reutilizables
 ├── data/
-│ ├── raw/ # Datos crudos y filtrados de outliers estructurales
-│ └── processed/ # Test set congelado de la Ronda 2
-├── artifacts/ # Modelos finales entrenados (joblib)
-├── documentacion.md # Documentación técnica detallada, notebook por notebook
+│   ├── raw/                               # Datos crudos y filtrados de outliers estructurales
+│   └── processed/                         # Test set congelado de la Ronda 2
+├── artifacts/                             # Modelos finales entrenados (joblib)
+├── documentacion.md                       # Documentación técnica detallada, notebook por notebook
 └── README.md
+```
 
 ## Herramientas
 
@@ -53,7 +55,9 @@ Python · pandas · NumPy · Scikit-Learn (`Pipeline`, `ColumnTransformer`, `Gri
 
 ## Notas
 
-Este repositorio documenta el proceso completo, incluyendo los errores y correcciones encontrados en el camino (ver `documentacion.md`) — no solo el resultado final. La intención es mostrar el razonamiento detrás de cada decisión, no solo el código que funcionó.
+Este repositorio documenta el proceso completo, incluyendo los errores y correcciones encontrados en el camino — no solo el resultado final. La intención es mostrar el razonamiento detrás de cada decisión, no solo el código que funcionó.
+
+📄 **¿Quieres más detalle?** Toda la documentación técnica, notebook por notebook — incluyendo los errores encontrados y cómo se corrigieron — está en **[documentacion.md](./documentacion.md)**.
 
 ---
 
