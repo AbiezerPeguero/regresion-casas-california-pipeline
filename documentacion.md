@@ -128,9 +128,7 @@ Documentación del notebook `regresion_casas_california_pipeline/notebooks/02_pi
 
 ### Contexto y objetivo
 
-En la versión manual (carpeta `regresion_casas_california`) hicimos el preprocesamiento paso a paso: funciones propias, objetos entrenados guardados con `joblib`, y repetir todo en test a mano.
-
-En este notebook hacemos **lo mismo, pero con `Pipeline` y `ColumnTransformer` de Scikit-Learn**. La idea: meter todo el preprocesamiento + el modelo en **un solo objeto**. Con una sola línea (`fit`) se entrena todo, y con otra (`predict`) se aplica todo a datos nuevos.
+En este notebook se construye el preprocesamiento y el modelo con **`Pipeline` y `ColumnTransformer` de Scikit-Learn**. La idea: meter todo el preprocesamiento + el modelo en **un solo objeto**. Con una sola línea (`fit`) se entrena todo, y con otra (`predict`) se aplica todo a datos nuevos.
 
 **Qué logramos en este notebook:**
 
@@ -605,9 +603,8 @@ rmse_test = root_mean_squared_error(y_test_filtrado, y_pred)
 1. **Lasso / convergencia:** investigar la causa (escala, colinealidad, `tol`, `selection="random"`).
 2. **Ampliar el grid** de Ridge + Polinomial (más valores de `alpha`, probar otros grados).
 3. **Error por segmento:** ver el error por `ocean_proximity` y por rango de precio.
-4. **Comparar con la versión manual** (objetos entrenados con joblib): deberían dar resultados casi idénticos.
-5. **SGDRegressor:** para cuando el dataset sea demasiado grande para los modelos anteriores.
-6. **Siguientes modelos del libro** (árboles, Random Forest, etc.), que suelen superar a los lineales aquí.
+4. **SGDRegressor:** para cuando el dataset sea demasiado grande para los modelos anteriores.
+5. **Siguientes modelos del libro** (árboles, Random Forest, etc.), que suelen superar a los lineales aquí.
 
 ---
 
@@ -621,23 +618,6 @@ rmse_test = root_mean_squared_error(y_test_filtrado, y_pred)
 - Comparar modelos con **validación cruzada**, no con el test.
 - Test usado **una sola vez** al final.
 - Interpretar el error en **porcentaje**, no solo en dólares.
-
----
-
-### Versión manual vs. Pipeline
-
-| Aspecto                | Versión manual                                                 | Versión Pipeline                                  |
-| ---------------------- | -------------------------------------------------------------- | ------------------------------------------------- |
-| Aprender (fit)         | Funciones propias con `=None`                                  | `pipeline.fit(X, y)`                              |
-| Aplicar a test         | Reusar objetos guardados con `joblib`                          | `pipeline.predict(X_test)`                        |
-| Riesgo de leakage      | Hay que cuidarlo a mano                                        | Lo evita el propio Pipeline                       |
-| Validación cruzada     | Difícil de hacer bien (hay que repetir todo en cada partición) | `cross_val_score` / `GridSearchCV` directos       |
-| Buscar hiperparámetros | Código a mano                                                  | `GridSearchCV` con `paso__parametro`              |
-| Guardar el modelo      | Varios archivos `.pkl`                                         | Un solo objeto (`joblib.dump(modelo_final, ...)`) |
-| Cantidad de código     | Mucho                                                          | Poco                                              |
-| Para qué sirve         | **Entender** qué pasa por dentro                               | **Trabajar** de forma limpia y segura             |
-
-> Primero hicimos la manual para entender cada paso; ahora usamos el Pipeline porque hace lo mismo con menos código y menos riesgo de errores.
 
 ---
 
